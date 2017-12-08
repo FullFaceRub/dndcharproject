@@ -1,0 +1,69 @@
+body {
+    background:whitesmoke;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.mainheader {
+    background: whitesmoke;
+    color: darkred;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 75px;
+    padding-right: 75px;
+    height: 20vh;
+    width: 100%;
+    box-shadow: 0px 10px;
+    border: none;
+}
+
+.horizontal {
+    display: flex;
+    height: 60vh;
+}
+
+.topleft {
+    background: darkred;
+    width: 50%;
+}
+
+.topright {
+    background: whitesmoke;
+    width: 50%;
+}
+
+#middle {
+    height: 1200px;
+}
+
+.midleft {
+    background: darkred;
+    width: 15%;
+}
+
+.land-img {
+    background: black;
+    width: 35%;
+}
+
+.maincontent {
+    background: whitesmoke;
+    width: 35%;
+    box-shadow: 10px 5px;
+    display: flex;
+}
+
+.midright {
+    background: whitesmoke;
+    width: 15%;
+}
+
+.mainfooter {
+    width: 100%;
+    height: 20vh;
+    background: whitesmoke;
+}
+
