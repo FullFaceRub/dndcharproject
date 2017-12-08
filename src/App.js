@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Modal from 'react-responsive-modal';
 import './reset.css';
 import './App.css';
 import SelectionBox from './components/SelectionBox';
 import Character from './components/Character';
 import Stats from './components/Stats';
+import Roller from './components/Roller';
+import axios from 'axios';
 import tiamat from './images/tiamat.jpg';
 
 class App extends Component {
@@ -17,12 +20,12 @@ class App extends Component {
       background: '',
       alignment: '',
       character: {},
-      strengthBonus: 0,
-      dexterityBonus: 0,
-      constitutionBonus: 0,
-      intelligenceBonus: 0,
-      wisdomBonus: 0,
-      charismaBonus: 0
+      strengthBonus: null,
+      dexterityBonus: null,
+      constitutionBonus: null,
+      intelligenceBonus: null,
+      wisdomBonus: null,
+      charismaBonus: null
     }
     this.handleName = this.handleName.bind(this);
     this.handleRace = this.handleRace.bind(this);
@@ -30,7 +33,13 @@ class App extends Component {
     this.handleBackground = this.handleBackground.bind(this);
     this.handleAlignment = this.handleAlignment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateRoll = this.updateRoll.bind(this);
   }
+
+  //for search bar when searching for races and spells
+  // componentDidMount(){
+  //   let promise = axios.get('http://dnd5eapi.co/api/')
+  // }
 
   handleName(val) {
     this.setState({
@@ -135,12 +144,23 @@ class App extends Component {
     })
   }
 
+  updateRoll(str, dex, con, wis, int, cha){
+    this.setState({
+      baseStrength: str,
+      baseDexterity: dex,
+      baseConstitution: con,
+      baseWisdom: wis,
+      baseIntelligence: int,
+      baseCharisma: cha
+  })
+  }
+
 
 
   render() {
     return (
       <div className="App">
-        <body>
+        <div className="body">
           <header className="mainheader">
             <img />
             <nav>
@@ -166,6 +186,7 @@ class App extends Component {
                   alignment={this.handleAlignment}
                   submit={this.handleSubmit}
                 />
+                <Roller updateRoll={this.updateRoll} />
               </div>
               <div>
                 <Character
@@ -188,7 +209,7 @@ class App extends Component {
           <footer className="mainfooter">
 
           </footer>
-        </body>
+        </div>
       </div>
     );
   }

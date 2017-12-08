@@ -1,19 +1,84 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class SelectionBox extends Component {
-    render(){
-        return(
+    constructor() {
+        super();
+
+        this.state = {
+            races: [],
+            classes: [],
+            backgrounds: [],
+            alignments: []
+        }
+        
+    }
+
+    componentDidMount() {
+        // axios.all('http://dnd5eapi.co/api/')
+        
+
+            axios.get('http://dnd5eapi.co/api/races')
+                .then(res => {
+                    console.log(res)
+                    this.setState({
+                        races: res.data.results
+                    })
+                })
+
+            axios.get('http://dnd5eapi.co/api/classes')
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        classes: res.data.results
+                    })
+                })
+
+            // axios.get('http://dnd5eapi.co/api/backgrounds')
+            //     .then(res => {
+            //         this.setState({
+            //             backgrounds: res.data.results
+            //         })
+            //     })       
+
+        
+            // axios.get('http://dnd5eapi.co/api/alignment')
+            //     .then(res => {
+            //         console.log(res.data.results)
+            //         this.setState({
+            //             alignments: res.data.results
+            //         })
+
+            //     })
+        
+    }
+
+    render() {
+        let raceArr = this.state.races;
+        let classArr = this.state.classes;
+        let bgArr = this.state.backgrounds;
+        let alignArr = this.state.alignments;
+        
+        console.log(raceArr)
+
+        let raceMap = raceArr.map((race,i) => {
+            return (<option value={race.name} >{race.name}</option>)
+        })
+
+
+
+        return (
             <div>
-                <input 
-                    onChange={event=>this.props.name(event.target.value)} 
-                    placeholder='Enter Character Name'/>
+                <input
+                    onChange={event => this.props.name(event.target.value)}
+                    placeholder='Enter Character Name' />
                 {/* <label>Select Race */}
                 <select
                     required
-                    onChange={event=>this.props.race(event.target.value)}
+                    onChange={event => this.props.race(event.target.value)}
                     placeholder='Select Race'>
                     <option defaultValue='Race' disabled selected>Select Race</option>
-                    <option value='Dwarf'>Dwarf</option>
+                    {/* <option value='Dwarf'>Dwarf</option>
                     <option value='Elf'>Elf</option>
                     <option value='Halfling'>Halfling</option>
                     <option value='Human'>Human</option>
@@ -21,12 +86,13 @@ class SelectionBox extends Component {
                     <option value='Gnome'>Gnome</option>
                     <option value='Half-Elf'>Half-Elf</option>
                     <option value='Half-Orc'>Half-Orc</option>
-                    <option value='Tiefling'>Tiefling</option>
+                    <option value='Tiefling'>Tiefling</option> */}
+                    {raceMap}
                 </select>
                 {/* </label> */}
                 <select
                     required
-                    onChange={event=>this.props.class(event.target.value)}
+                    onChange={event => this.props.class(event.target.value)}
                     placeholder='Select Class'>
                     <option defaultValue='Class' disabled selected>Select Class</option>
                     <option value='Barbarian'>Barbarian</option>
@@ -44,7 +110,7 @@ class SelectionBox extends Component {
                 </select>
                 <select
                     required
-                    onChange={event=>this.props.background(event.target.value)}
+                    onChange={event => this.props.background(event.target.value)}
                     placeholder='Select Background'>
                     <option defaultValue='Background' disabled selected>Select Background</option>
                     <option value='Acolyte'>Acolyte</option>
@@ -64,7 +130,7 @@ class SelectionBox extends Component {
                 <select
                     required
                     // defaultValue='Alignment'
-                    onChange={event=>this.props.alignment(event.target.value)}
+                    onChange={event => this.props.alignment(event.target.value)}
                     placeholder='Select Alignment'>
                     <option defaultValue='Alignment' disabled selected>Select Alignment</option>
                     <option value='Lawful Good'>Lawful Good</option>
@@ -78,7 +144,7 @@ class SelectionBox extends Component {
                     <option value='Chaotic Evil'>Chaotic Evil</option>
                 </select>
                 <button
-                    onClick={event=>this.props.submit(event.target.value)}>
+                    onClick={event => this.props.submit(event.target.value)}>
                     Create Character
                 </button>
             </div>
