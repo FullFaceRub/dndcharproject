@@ -8,6 +8,9 @@ import Stats from './components/Stats';
 import Roller from './components/Roller';
 import axios from 'axios';
 import tiamat from './images/tiamat.jpg';
+import Skills from './components/Skills';
+
+
 
 class App extends Component {
   constructor() {
@@ -25,7 +28,10 @@ class App extends Component {
       constitutionBonus: null,
       intelligenceBonus: null,
       wisdomBonus: null,
-      charismaBonus: null
+      charismaBonus: null,
+      classSkills: [],
+      backgroundSkills: [],
+      trainableSkills: []
     }
     this.handleName = this.handleName.bind(this);
     this.handleRace = this.handleRace.bind(this);
@@ -107,6 +113,17 @@ class App extends Component {
   }
 
   handleClass(val) {
+    axios.get('http://dnd5eapi.co/api/classes/'+(val).toLowerCase())//use parameter to get class
+    .then(res=>{
+      console.log(res);
+      let skills = res.data.proficiency_choices[0].from.map(skill=>{
+          return skill.name
+      }) 
+      this.setState({
+          classSkills: skills
+      })//map through array to get proficient skills
+      console.log(this.state.classSkills)
+    })
     this.setState({
       class: val
     })
@@ -122,6 +139,12 @@ class App extends Component {
     this.setState({
       alignment: val
     })
+  }
+
+  handleTrainSkills(){
+    let role = this.state.class;
+    let bg = this.state.background;
+    let profArr = [];
   }
 
   handleSubmit() {
@@ -145,6 +168,7 @@ class App extends Component {
   }
 
   updateRoll(str, dex, con, wis, int, cha){
+
     this.setState({
       baseStrength: str,
       baseDexterity: dex,
@@ -186,7 +210,23 @@ class App extends Component {
                   alignment={this.handleAlignment}
                   submit={this.handleSubmit}
                 />
-                <Roller updateRoll={this.updateRoll} />
+                <Roller 
+                
+                updateRoll={this.updateRoll} />
+                <Skills
+                strengthBonus = {this.state.strengthBonus}
+                dexterityBonus = {this.state.dexterityBonus}
+                constitutionBonus = {this.state.constitutionBonus}
+                intelligenceBonus = {this.state.intelligenceBonus}
+                wisdomBonus = {this.state.wisdomBonus}
+                charismaBonus = {this.state.charismaBonus}
+                baseStrength = {this.state.baseStrength}
+                baseDexterity = {this.state.baseDexterity}
+                baseConstitution = {this.state.baseConstitution}
+                baseWisdom = {this.state.baseWisdom}
+                baseIntelligence = {this.state.baseIntelligence}
+                baseCharisma = {this.state.baseCharisma}
+                />
               </div>
               <div>
                 <Character

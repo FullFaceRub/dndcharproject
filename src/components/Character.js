@@ -1,5 +1,5 @@
 import React from 'react';
-
+//Going to pop up with a print button that saves to pdf
 export default function Character(props){
     let name = props.character.name;
     let race = props.character.race;

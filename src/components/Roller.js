@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class Roller extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             baseStrength: null,
@@ -16,8 +16,9 @@ class Roller extends Component {
         this.handleRoll=this.handleRoll.bind(this);
     }
 
-    handleRoll(){
+    handleRoll(props){
         let str = Math.floor((Math.random() * (7-1)+1)+(Math.random() * (7-1)+1)+(Math.random() * (7-1)+1));
+        console.log(str);
         let dex = Math.floor((Math.random() * (7-1)+1)+(Math.random() * (7-1)+1)+(Math.random() * (7-1)+1));
         let con = Math.floor((Math.random() * (7-1)+1)+(Math.random() * (7-1)+1)+(Math.random() * (7-1)+1));
         let int = Math.floor((Math.random() * (7-1)+1)+(Math.random() * (7-1)+1)+(Math.random() * (7-1)+1));

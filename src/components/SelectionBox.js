@@ -8,15 +8,13 @@ class SelectionBox extends Component {
         this.state = {
             races: [],
             classes: [],
-            backgrounds: [],
-            alignments: []
+            // backgrounds: [],
+            // alignments: []
         }
         
     }
 
-    componentDidMount() {
-        // axios.all('http://dnd5eapi.co/api/')
-        
+    componentDidMount() {        
 
             axios.get('http://dnd5eapi.co/api/races')
                 .then(res => {
@@ -56,46 +54,39 @@ class SelectionBox extends Component {
     render() {
         let raceArr = this.state.races;
         let classArr = this.state.classes;
-        let bgArr = this.state.backgrounds;
-        let alignArr = this.state.alignments;
+        // let bgArr = this.state.backgrounds;
+        // let alignArr = this.state.alignments;
         
         console.log(raceArr)
 
         let raceMap = raceArr.map((race,i) => {
-            return (<option value={race.name} >{race.name}</option>)
+            return (<option key={i} value={race.name} >{race.name}</option>)
         })
-
-
+        let classMap = classArr.map((role,i) => {
+            return (<option key={i} value={role.name} >{role.name}</option>)
+        })
 
         return (
             <div>
                 <input
                     onChange={event => this.props.name(event.target.value)}
                     placeholder='Enter Character Name' />
-                {/* <label>Select Race */}
+                
                 <select
                     required
                     onChange={event => this.props.race(event.target.value)}
                     placeholder='Select Race'>
                     <option defaultValue='Race' disabled selected>Select Race</option>
-                    {/* <option value='Dwarf'>Dwarf</option>
-                    <option value='Elf'>Elf</option>
-                    <option value='Halfling'>Halfling</option>
-                    <option value='Human'>Human</option>
-                    <option value='Dragonborn'>Dragonborn</option>
-                    <option value='Gnome'>Gnome</option>
-                    <option value='Half-Elf'>Half-Elf</option>
-                    <option value='Half-Orc'>Half-Orc</option>
-                    <option value='Tiefling'>Tiefling</option> */}
                     {raceMap}
                 </select>
-                {/* </label> */}
+                
                 <select
                     required
                     onChange={event => this.props.class(event.target.value)}
                     placeholder='Select Class'>
                     <option defaultValue='Class' disabled selected>Select Class</option>
-                    <option value='Barbarian'>Barbarian</option>
+                    {classMap}
+                    {/* <option value='Barbarian'>Barbarian</option>
                     <option value='Bard'>Bard</option>
                     <option value='Cleric'>Cleric</option>
                     <option value='Druid'>Druid</option>
@@ -106,7 +97,7 @@ class SelectionBox extends Component {
                     <option value='Rogue'>Rogue</option>
                     <option value='Sorceror'>Sorceror</option>
                     <option value='Warlock'>Warlock</option>
-                    <option value='Wizard'>Wizard</option>
+                    <option value='Wizard'>Wizard</option> */}
                 </select>
                 <select
                     required
