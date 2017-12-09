@@ -130,7 +130,48 @@ class App extends Component {
   }
 
   handleBackground(val) {
+    let skills = [];
+    if (val=='Acolyte'){
+      skills = ["Skill: Insight","Skill: Religion"]
+    }
+    if (val=='Charlatan'){
+      skills = ["Skill: Deception","Skill: Sleight of Hand"]
+    }
+    if (val=='Criminal'){
+      skills = ["Skill: Deception","Skill: Stealth"]
+    }
+    if (val=='Entertainer'){
+      skills = ["Skill: Acrobatics","Skill: Performance"]
+    }
+    if (val=='Folk Hero'){
+      skills = ["Skill: Animal Handling","Skill: Survival"]
+    }
+    if (val=='Guild Artisan'){
+      skills = ["Skill: Insight","Skill: Persuasion"]
+    }
+    if (val=='Hermit'){
+      skills = ["Skill: Medicine","Skill: Religion"]
+    }
+    if (val=='Noble'){
+      skills = ["Skill: History","Skill: Persuasion"]
+    }
+    if (val=='Outlander'){
+      skills = ["Skill: Athletics","Skill: Survival"]
+    }
+    if (val=='Sage'){
+      skills = ["Skill: Arcana","Skill: History"]
+    }
+    if (val=='Sailor'){
+      skills = ["Skill: Athletics","Skill: Persuasion"]
+    }
+    if (val=='Soldier'){
+      skills = ["Skill: Athletics","Skill: Intimidation"]
+    }
+    if (val=='Urchin'){
+      skills = ["Skill: Sleight of Hand","Skill: Stealth"]
+    }
     this.setState({
+      backgroundSkills: skills,
       background: val
     })
   }
@@ -194,6 +235,8 @@ class App extends Component {
           </header>
           <span className="horizontal">
             <section className="topleft"></section>
+            <section className="topmidleft"></section>
+            <section className="topmidright"></section>
             <section className="topright"></section>
           </span>
           <span className="horizontal" id="middle">
@@ -226,6 +269,9 @@ class App extends Component {
                 baseWisdom = {this.state.baseWisdom}
                 baseIntelligence = {this.state.baseIntelligence}
                 baseCharisma = {this.state.baseCharisma}
+                backgroundSkills = {this.state.backgroundSkills}
+                classSkills = {this.state.classSkills}
+                trainableSkills = {this.state.trainableSkills}
                 />
               </div>
               <div>
@@ -243,8 +289,10 @@ class App extends Component {
             <section className="midright"></section>
           </span>
           <span className="horizontal">
-            <section className="topleft"></section>
-            <section className="topright"></section>
+            <section className="bottomleft"></section>
+            <section className="bottommidleft"></section>
+            <section className="bottommidright"></section>
+            <section className="bottomright"></section>
           </span>
           <footer className="mainfooter">
 

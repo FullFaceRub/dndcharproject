@@ -27,12 +27,30 @@
 
 .topleft {
     background: darkred;
-    width: 50%;
+    width: 15%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45);
+    
+}
+
+.topmidleft {
+    background: darkred;
+    width: 35%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45), inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+    
+}
+
+.topmidright {
+    background: whitesmoke;
+    width: 35%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45), inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+    
 }
 
 .topright {
     background: whitesmoke;
-    width: 50%;
+    width: 15%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45);
+    
 }
 
 #middle {
@@ -42,6 +60,8 @@
 .midleft {
     background: darkred;
     width: 15%;
+    box-shadow: inset -25px 0px 25px -25px rgba(0,0,0,0.45);
+    
 }
 
 .land-img {
@@ -59,6 +79,33 @@
 .midright {
     background: whitesmoke;
     width: 15%;
+    box-shadow: inset 25px 0px 25px -25px rgba(0,0,0,0.45);
+}
+
+.bottomleft {
+    background: darkred;
+    width: 15%;
+    box-shadow: inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+
+}
+
+.bottommidleft {
+    background: darkred;
+    width: 35%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45), inset 0px -25px 25px -25px rgba(0,0,0,0.45);  
+}
+
+.bottommidright {
+    background: whitesmoke;
+    width: 35%;
+    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45), inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+    
+}
+
+.bottomright {
+    background: whitesmoke;
+    width: 15%;
+    box-shadow: inset 0px -25px 25px -25px rgba(0,0,0,0.45);
 }
 
 .mainfooter {
