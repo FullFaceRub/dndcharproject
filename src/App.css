@@ -1,6 +1,11 @@
+@font-face {
+    src: url('https://fonts.googleapis.com/css?family=Inknut+Antiqua:300,400,800');
+    font-family: 'Inknut Antiqua', serif;
+}
+
 .body {
     background:whitesmoke;
-    font-family: sans-serif;
+    font-family: 'Inknut Antiqua', serif !important;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -12,12 +17,61 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 75px;
+    padding-left: 140px;
     padding-right: 75px;
     height: 25vh;
     width: 100%;
-    box-shadow: 0px 10px;
     border: none;
+    font-family: 'Inknut Antiqua', serif;
+    font-size: 32px;
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+}
+
+.title {
+    width: 737px;
+}
+
+.search {
+    height: 40px;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchbutton {
+    background: whitesmoke;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: darkred;
+    border-style: solid;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchicon {
+    width: 20px;
+    height: 20px;
+}
+
+.searchbox {
+    background: whitesmoke;
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkred;
+    border-radius: 50px;
+    height: 20px;
+    width: 100px;
+    color: lightgrey;
+    font-weight: lighter;
+    text-align: center;
 }
 
 .horizontal {
@@ -28,7 +82,7 @@
 .topleft {
     background: darkred;
     width: 15%;
-    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45);
+    box-shadow: inset 0px 0px 45px 0px rgba(0,0,0,0.45);
     
 }
 
@@ -49,9 +103,10 @@
 .topright {
     background: whitesmoke;
     width: 15%;
-    box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.45);
+    box-shadow: inset 0px 0px 45px 0px rgba(0,0,0,0.45);
     
 }
+
 
 #middle {
     height: 1200px;
@@ -85,7 +140,7 @@
 .bottomleft {
     background: darkred;
     width: 15%;
-    box-shadow: inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+    box-shadow: inset 0px 0px 45px 0px rgba(0,0,0,0.45);
 
 }
 
@@ -105,12 +160,29 @@
 .bottomright {
     background: whitesmoke;
     width: 15%;
-    box-shadow: inset 0px -25px 25px -25px rgba(0,0,0,0.45);
+    box-shadow: inset 0px 0px 45px 0px rgba(0,0,0,0.45);
 }
 
 .mainfooter {
     width: 100%;
     height: 25vh;
     background: whitesmoke;
+    color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
+.mainfooter div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+}
+
+.mainfooter div h5 {
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 10px;
+}

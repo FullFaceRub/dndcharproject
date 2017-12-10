@@ -9,6 +9,8 @@ import Roller from './components/Roller';
 import axios from 'axios';
 import tiamat from './images/tiamat.jpg';
 import Skills from './components/Skills';
+import magglass from './images/magglass.png';
+import logo from './images/dungeons_and_dragons_40_ampersand_flat.png';
 
 
 
@@ -61,45 +63,50 @@ class App extends Component {
     let wis = 0;
     let cha = 0;
 
-    if (val === "Elf") {
-      dex = 2;
-      int = 1;
-    }
-    if (val === "Dwarf") {
-      str = 2;
-      con = 2;
-    }
-    if (val === "Halfling") {
-      dex = 2;
-      con = 1;
-    }
-    if (val === "Human") {
-      str = 1;
-      dex = 1;
-      con = 1;
-      int = 1;
-      wis = 1;
-      cha = 1;
-    }
-    if (val === "Dragonborn") {
-      str = 2;
-      cha = 1;
-    }
-    if (val === "Gnome") {
-      con = 1;
-      int = 2;
-    }
-    if (val === "Half-Elf") {
-      cha = 2;
-    }
-    if (val === "Half-Orc") {
-      str = 2;
-      con = 1;
-    }
-    if (val === "Tiefling") {
-      int = 1;
-      cha = 2;
-    }
+    axios.get('http://dnd5eapi.co/api/races')
+      .then(res => {
+        console.log(res);
+      })
+
+    // if (val === "Elf") {
+    //   dex = 2;
+    //   int = 1;
+    // }
+    // if (val === "Dwarf") {
+    //   str = 2;
+    //   con = 2;
+    // }
+    // if (val === "Halfling") {
+    //   dex = 2;
+    //   con = 1;
+    // }
+    // if (val === "Human") {
+    //   str = 1;
+    //   dex = 1;
+    //   con = 1;
+    //   int = 1;
+    //   wis = 1;
+    //   cha = 1;
+    // }
+    // if (val === "Dragonborn") {
+    //   str = 2;
+    //   cha = 1;
+    // }
+    // if (val === "Gnome") {
+    //   con = 1;
+    //   int = 2;
+    // }
+    // if (val === "Half-Elf") {
+    //   cha = 2;
+    // }
+    // if (val === "Half-Orc") {
+    //   str = 2;
+    //   con = 1;
+    // }
+    // if (val === "Tiefling") {
+    //   int = 1;
+    //   cha = 2;
+    // }
 
     this.setState({
       race: val,
@@ -113,17 +120,17 @@ class App extends Component {
   }
 
   handleClass(val) {
-    axios.get('http://dnd5eapi.co/api/classes/'+(val).toLowerCase())//use parameter to get class
-    .then(res=>{
-      console.log(res);
-      let skills = res.data.proficiency_choices[0].from.map(skill=>{
+    axios.get('http://dnd5eapi.co/api/classes/' + (val).toLowerCase())//use parameter to get class
+      .then(res => {
+        console.log(res);
+        let skills = res.data.proficiency_choices[0].from.map(skill => {
           return skill.name
-      }) 
-      this.setState({
+        })
+        this.setState({
           classSkills: skills
-      })//map through array to get proficient skills
-      console.log(this.state.classSkills)
-    })
+        })//map through array to get proficient skills
+        console.log(this.state.classSkills)
+      })
     this.setState({
       class: val
     })
@@ -131,44 +138,44 @@ class App extends Component {
 
   handleBackground(val) {
     let skills = [];
-    if (val=='Acolyte'){
-      skills = ["Skill: Insight","Skill: Religion"]
+    if (val === 'Acolyte') {
+      skills = ["Skill: Insight", "Skill: Religion"]
     }
-    if (val=='Charlatan'){
-      skills = ["Skill: Deception","Skill: Sleight of Hand"]
+    if (val === 'Charlatan') {
+      skills = ["Skill: Deception", "Skill: Sleight of Hand"]
     }
-    if (val=='Criminal'){
-      skills = ["Skill: Deception","Skill: Stealth"]
+    if (val === 'Criminal') {
+      skills = ["Skill: Deception", "Skill: Stealth"]
     }
-    if (val=='Entertainer'){
-      skills = ["Skill: Acrobatics","Skill: Performance"]
+    if (val === 'Entertainer') {
+      skills = ["Skill: Acrobatics", "Skill: Performance"]
     }
-    if (val=='Folk Hero'){
-      skills = ["Skill: Animal Handling","Skill: Survival"]
+    if (val === 'Folk Hero') {
+      skills = ["Skill: Animal Handling", "Skill: Survival"]
     }
-    if (val=='Guild Artisan'){
-      skills = ["Skill: Insight","Skill: Persuasion"]
+    if (val === 'Guild Artisan') {
+      skills = ["Skill: Insight", "Skill: Persuasion"]
     }
-    if (val=='Hermit'){
-      skills = ["Skill: Medicine","Skill: Religion"]
+    if (val === 'Hermit') {
+      skills = ["Skill: Medicine", "Skill: Religion"]
     }
-    if (val=='Noble'){
-      skills = ["Skill: History","Skill: Persuasion"]
+    if (val === 'Noble') {
+      skills = ["Skill: History", "Skill: Persuasion"]
     }
-    if (val=='Outlander'){
-      skills = ["Skill: Athletics","Skill: Survival"]
+    if (val === 'Outlander') {
+      skills = ["Skill: Athletics", "Skill: Survival"]
     }
-    if (val=='Sage'){
-      skills = ["Skill: Arcana","Skill: History"]
+    if (val === 'Sage') {
+      skills = ["Skill: Arcana", "Skill: History"]
     }
-    if (val=='Sailor'){
-      skills = ["Skill: Athletics","Skill: Persuasion"]
+    if (val === 'Sailor') {
+      skills = ["Skill: Athletics", "Skill: Persuasion"]
     }
-    if (val=='Soldier'){
-      skills = ["Skill: Athletics","Skill: Intimidation"]
+    if (val === 'Soldier') {
+      skills = ["Skill: Athletics", "Skill: Intimidation"]
     }
-    if (val=='Urchin'){
-      skills = ["Skill: Sleight of Hand","Skill: Stealth"]
+    if (val === 'Urchin') {
+      skills = ["Skill: Sleight of Hand", "Skill: Stealth"]
     }
     this.setState({
       backgroundSkills: skills,
@@ -182,11 +189,11 @@ class App extends Component {
     })
   }
 
-  handleTrainSkills(){
-    let role = this.state.class;
-    let bg = this.state.background;
-    let profArr = [];
-  }
+  // handleTrainSkills(){
+  //   let role = this.state.class;
+  //   let bg = this.state.background;
+  //   let profArr = [];
+  // }
 
   handleSubmit() {
     let newChar = {
@@ -208,7 +215,7 @@ class App extends Component {
     })
   }
 
-  updateRoll(str, dex, con, wis, int, cha){
+  updateRoll(str, dex, con, wis, int, cha) {
 
     this.setState({
       baseStrength: str,
@@ -217,7 +224,7 @@ class App extends Component {
       baseWisdom: wis,
       baseIntelligence: int,
       baseCharisma: cha
-  })
+    })
   }
 
 
@@ -227,11 +234,14 @@ class App extends Component {
       <div className="App">
         <div className="body">
           <header className="mainheader">
-            <img />
-            <nav>
-            </nav>
-            <input />
-            <button></button>
+            <img src={logo} alt="logo" className="logo" />
+            <div className="title">
+              <h1>Dungeons and Dragons Character Creator</h1>
+            </div>
+            <div className="search">
+              <input className="searchbox" placeholder="Search" />
+              <button className="searchbutton"><img src={magglass} alt="Search" className="searchicon" /></button>
+            </div>
           </header>
           <span className="horizontal">
             <section className="topleft"></section>
@@ -241,37 +251,45 @@ class App extends Component {
           </span>
           <span className="horizontal" id="middle">
             <section className="midleft"></section>
-            <img src={tiamat} alt="The Evil Goddess Tiamat" className="land-img"/>
+            <img src={tiamat} alt="The Evil Goddess Tiamat" className="land-img" />
             <section className="maincontent">
               <div>
-                <h1>Dungeons and Dragons Character Creator</h1>
-                <SelectionBox
+                {/* <Modal
+                  isOpen={bool}
+                  onAfterOpen={afterOpenFn}
+                  onRequestClose={requestCloseFn}
+                  closeTimeoutMS={n}
+                  style={customStyle}
+                  contentLabel="Modal"> */}
+                  <SelectionBox
                   name={this.handleName}
                   race={this.handleRace}
                   class={this.handleClass}
                   background={this.handleBackground}
                   alignment={this.handleAlignment}
-                  submit={this.handleSubmit}
-                />
-                <Roller 
+                  submit={this.handleSubmit}/>
+                {/* </Modal> */}
+
                 
-                updateRoll={this.updateRoll} />
+                <Roller
+
+                  updateRoll={this.updateRoll} />
                 <Skills
-                strengthBonus = {this.state.strengthBonus}
-                dexterityBonus = {this.state.dexterityBonus}
-                constitutionBonus = {this.state.constitutionBonus}
-                intelligenceBonus = {this.state.intelligenceBonus}
-                wisdomBonus = {this.state.wisdomBonus}
-                charismaBonus = {this.state.charismaBonus}
-                baseStrength = {this.state.baseStrength}
-                baseDexterity = {this.state.baseDexterity}
-                baseConstitution = {this.state.baseConstitution}
-                baseWisdom = {this.state.baseWisdom}
-                baseIntelligence = {this.state.baseIntelligence}
-                baseCharisma = {this.state.baseCharisma}
-                backgroundSkills = {this.state.backgroundSkills}
-                classSkills = {this.state.classSkills}
-                trainableSkills = {this.state.trainableSkills}
+                  strengthBonus={this.state.strengthBonus}
+                  dexterityBonus={this.state.dexterityBonus}
+                  constitutionBonus={this.state.constitutionBonus}
+                  intelligenceBonus={this.state.intelligenceBonus}
+                  wisdomBonus={this.state.wisdomBonus}
+                  charismaBonus={this.state.charismaBonus}
+                  baseStrength={this.state.baseStrength}
+                  baseDexterity={this.state.baseDexterity}
+                  baseConstitution={this.state.baseConstitution}
+                  baseWisdom={this.state.baseWisdom}
+                  baseIntelligence={this.state.baseIntelligence}
+                  baseCharisma={this.state.baseCharisma}
+                  backgroundSkills={this.state.backgroundSkills}
+                  classSkills={this.state.classSkills}
+                  trainableSkills={this.state.trainableSkills}
                 />
               </div>
               <div>
@@ -295,7 +313,9 @@ class App extends Component {
             <section className="bottomright"></section>
           </span>
           <footer className="mainfooter">
-
+            <div>
+              <h5>Copyright: Dan Bury</h5>
+            </div>
           </footer>
         </div>
       </div>
