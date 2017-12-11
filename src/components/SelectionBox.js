@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 class SelectionBox extends Component {
     constructor() {
@@ -11,7 +23,9 @@ class SelectionBox extends Component {
             // backgrounds: [],
             // alignments: []
         }
-        
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {        
@@ -51,6 +65,18 @@ class SelectionBox extends Component {
         
     }
 
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    afterOpenModal() {
+        this.subtitle.style.color = '#f00';
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
+
     render() {
         let raceArr = this.state.races;
         let classArr = this.state.classes;
@@ -68,6 +94,16 @@ class SelectionBox extends Component {
 
         return (
             <div>
+                <button onClick={this.openModal}>Select Character Type</button>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Choose your Skills">
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Fill this out!</h2>
+                    <button onClick={this.closeModal}>close</button>
+
                 <input
                     onChange={event => this.props.name(event.target.value)}
                     placeholder='Enter Character Name' />
@@ -124,8 +160,9 @@ class SelectionBox extends Component {
                 </select>
                 <button
                     onClick={event => this.props.submit(event.target.value)}>
-                    Create Character
+                    Submit
                 </button>
+                </Modal>
             </div>
         )
     }

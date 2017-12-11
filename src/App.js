@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-modal';
 import './reset.css';
 import './App.css';
 import SelectionBox from './components/SelectionBox';
@@ -10,7 +10,7 @@ import axios from 'axios';
 import tiamat from './images/tiamat.jpg';
 import Skills from './components/Skills';
 import magglass from './images/magglass.png';
-import logo from './images/dungeons_and_dragons_40_ampersand_flat.png';
+import logo from './images/logo.png';
 
 
 
