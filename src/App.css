@@ -129,6 +129,23 @@
     width: 35%;
     box-shadow: 10px 5px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 50px;
+}
+
+.charPreview {
+    line-height: 20px;
+    font-size: 12px;
+    height: 150px;
 }
 
 .midright {

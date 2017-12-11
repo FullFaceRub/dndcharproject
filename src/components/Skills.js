@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import './forms.css';
 
 const customStyles = {
     content: {
@@ -9,6 +10,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
+        // position: 'fixed',
+
     }
 };
 
@@ -17,46 +20,67 @@ class Skills extends Component {
         super(props);
 
         this.state = {
-            acrobatics: null,
-            animalHandling: null,
-            arcana: null,
-            athletics: null,
-            deception: null,
-            history: null,
-            insight: null,
-            intimidation: null,
-            investigation: null,
-            medicine: null,
-            nature: null,
-            perception: null,
-            performance: null,
-            persuasion: null,
-            religion: null,
-            sleightOfHand: null,
-            stealth: null,
-            survival: null,
-            trainableSkills: [],
+            acrobatics: 0,
+            animalHandling: 0,
+            arcana: 0,
+            athletics: 0,
+            deception: 0,
+            history: 0,
+            insight: 0,
+            intimidation: 0,
+            investigation: 0,
+            medicine: 0,
+            nature: 0,
+            perception: 0,
+            performance: 0,
+            persuasion: 0,
+            religion: 0,
+            sleightOfHand: 0,
+            stealth: 0,
+            survival: 0,
+            // trainableSkills: [],
             modalIsOpen: false
         }
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
-        this.handleSkills = this.handleSkills.bind(this);
+        // this.handleSkills = this.handleSkills.bind(this);
+        this.acrobatics = this.acrobatics.bind(this);
     }
     //check this with internet
-    handleSkills(props) {
-        let trainableSkills = this.props.classSkills;
-        let backgroundSkills = this.props.backgroundSkills;
-        //filter out duplicates
-        for (var i = 0; i < backgroundSkills.length; i++) {
-            if (trainableSkills.indexOf(backgroundSkills[i]) === -1) {
-                trainableSkills.push(backgroundSkills[i])
-            }
+    // handleSkills(props) {
+    //     let trainableSkills = this.props.classSkills;
+    //     let backgroundSkills = this.props.backgroundSkills;
+    //     //filter out duplicates
+    //     for (var i = 0; i < backgroundSkills.length; i++) {
+    //         if (trainableSkills.indexOf(backgroundSkills[i]) === -1) {
+    //             trainableSkills.push(backgroundSkills[i])
+    //         }
+    //     }
+    //     console.log(trainableSkills)
+    //     this.setState({
+    //         trainableSkills: trainableSkills
+    //     })
+    // }
+
+    acrobatics() {
+        let acrobatics = this.state.acrobatics
+
+
+        if (acrobatics < 2) {
+            acrobatics = 2
         }
-        console.log(trainableSkills)
+        else if (acrobatics > 0) {
+            acrobatics = 0
+        }
         this.setState({
-            trainableSkills: trainableSkills
+            acrobatics: acrobatics
         })
+        console.log(this.state.acrobatics);
+    }
+
+    applySkills() {
+
     }
 
     openModal() {
@@ -64,7 +88,7 @@ class Skills extends Component {
     }
 
     afterOpenModal() {
-        this.subtitle.style.color = '#f00';
+        this.subtitle.style.color = 'darkred';
     }
 
     closeModal() {
@@ -73,10 +97,10 @@ class Skills extends Component {
 
 
     render() {
-        let trainableSkills=this.state.trainableSkills;
+        let trainableSkills = this.props.trainableSkills;
         return (
             <div>
-                <button onClick={this.handleSkills}>Choose Skills</button>
+                {/* <button onClick={this.handleSkills}>Choose Skills</button> */}
                 <button onClick={this.openModal}>Select Skills</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
@@ -84,102 +108,102 @@ class Skills extends Component {
                     onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Choose your Skills">
+                    <button className="close" onClick={this.closeModal}>x</button>
 
                     <h2 ref={subtitle => this.subtitle = subtitle}>Available Skills Proficiencies</h2>
-                    <button onClick={this.closeModal}>close</button>
                     <div>Choose from: {trainableSkills}</div>
                     <form>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Acrobatics" checked={false} />Acrobatics
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Animal Handling" checked={false} />Animal Handling
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Arcana" checked={false} />Arcana
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Athletics" checked={false} />Athletics
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Deception" checked={false} />Deception
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="History" checked={false} />History
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Insight" checked={false} />Insight
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Intimidation" checked={false} />Intimidation
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Investigation" checked={false} />Investigation
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Medicine" checked={false} />Medicine
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Nature" checked={false} />Nature
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Perception" checked={false} />Perception
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Performance" checked={false} />Performance
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Persuasion" checked={false} />Persuasion
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Religion" checked={false} />Religion
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Sleight of Hand" checked={false} />Sleight of Hand
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Stealth" checked={false} />Stealth
-                        </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="Survival" checked={false} />Survival
-                        </label>
-                        </div>
+                        <div className="checkbox">
 
+                            <input type="checkbox" value="Acrobatics" onChange={this.acrobatics} />Acrobatics
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Animal Handling" onChange={this.animalHandling} />Animal Handling
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Arcana" onChange={this.arcana} />Arcana
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Athletics" onChange={this.athletics} />Athletics
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Deception" onChange={this.deception} />Deception
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="History" onChange={this.history} />History
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Insight" onChange={this.insight} />Insight
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Intimidation" onChange={this.intimidation} />Intimidation
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Investigation" onChange={this.investigation} />Investigation
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Medicine" onChange={this.medicine} />Medicine
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Nature" onChange={this.nature} />Nature
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Perception" onChange={this.perception} />Perception
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Performance" onChange={this.performance} />Performance
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Persuasion" onChange={this.persuasion} />Persuasion
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Religion" onChange={this.religion} />Religion
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Sleight of Hand" onChange={this.sleightOfHand} />Sleight of Hand
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Stealth" onChange={this.stealth} />Stealth
+
+                        </div>
+                        <div className="checkbox">
+
+                            <input type="checkbox" value="Survival" onChange={this.survival} />Survival
+
+                        </div>
+                        <button onClick={this.applySkills}>Submit</button>
                     </form>
                 </Modal>
             </div>

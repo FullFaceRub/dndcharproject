@@ -1,0 +1,29 @@
+button {
+    background: whitesmoke;
+    border-radius: 50px;
+    line-height: 20px;
+    border-width: 2px;
+    border-color: darkred;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+select {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+select option {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+input::-moz-placeholder {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+input::-webkit-input-placeholder {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.close {
+    border: none;
+    float: right;
+}

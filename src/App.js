@@ -4,7 +4,7 @@ import './reset.css';
 import './App.css';
 import SelectionBox from './components/SelectionBox';
 import Character from './components/Character';
-import Stats from './components/Stats';
+// import Stats from './components/Stats';
 import Roller from './components/Roller';
 import axios from 'axios';
 import tiamat from './images/tiamat.jpg';
@@ -203,6 +203,14 @@ class App extends Component {
       background: this.state.background,
       alignment: this.state.alignment
     };
+    let trainableSkills = this.state.classSkills;
+    let backgroundSkills = this.state.backgroundSkills;
+    //filter out duplicates
+    for (var i = 0; i < backgroundSkills.length; i++) {
+        if (trainableSkills.indexOf(backgroundSkills[i]) === -1) {
+            trainableSkills.push(backgroundSkills[i])
+        }
+    }
     // newChar.push(
     //   this.state.name,
     //   this.state.race,
@@ -211,7 +219,8 @@ class App extends Component {
     //   this.state.alignment)
     console.log(newChar);
     this.setState({
-      character: newChar
+      character: newChar,
+      trainableSkills: trainableSkills
     })
   }
 
@@ -253,14 +262,8 @@ class App extends Component {
             <section className="midleft"></section>
             <img src={tiamat} alt="The Evil Goddess Tiamat" className="land-img" />
             <section className="maincontent">
-              <div>
-                {/* <Modal
-                  isOpen={bool}
-                  onAfterOpen={afterOpenFn}
-                  onRequestClose={requestCloseFn}
-                  closeTimeoutMS={n}
-                  style={customStyle}
-                  contentLabel="Modal"> */}
+              <div className="buttons">
+               
                   <SelectionBox
                   name={this.handleName}
                   race={this.handleRace}
@@ -268,7 +271,6 @@ class App extends Component {
                   background={this.handleBackground}
                   alignment={this.handleAlignment}
                   submit={this.handleSubmit}/>
-                {/* </Modal> */}
 
                 
                 <Roller
@@ -287,21 +289,21 @@ class App extends Component {
                   baseWisdom={this.state.baseWisdom}
                   baseIntelligence={this.state.baseIntelligence}
                   baseCharisma={this.state.baseCharisma}
-                  backgroundSkills={this.state.backgroundSkills}
-                  classSkills={this.state.classSkills}
+                  // backgroundSkills={this.state.backgroundSkills}
+                  // classSkills={this.state.classSkills}
                   trainableSkills={this.state.trainableSkills}
                 />
               </div>
-              <div>
+              <div className="charPreview">
                 <Character
                   character={this.state.character} />
-                <Stats
+                {/* <Stats
                   strength={this.state.strengthBonus}
                   dexterity={this.state.dexterityBonus}
                   constitution={this.state.constitutionBonus}
                   intelligence={this.state.intelligenceBonus}
                   wisdom={this.state.wisdomBonus}
-                  charisma={this.state.charismaBonus} />
+                  charisma={this.state.charismaBonus} /> */}
               </div>
             </section>
             <section className="midright"></section>
