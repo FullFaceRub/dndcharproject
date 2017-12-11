@@ -1,33 +1,42 @@
 import React from 'react';
-import './character.css'
+import './character.css';
+import Stats from './Stats';
 //Going to pop up with a print button that saves to pdf
 export default function Character(props) {
-    
+    let name = props.character.name;
+    let race = props.character.race;
+    let role = props.character.class;
+    let background = props.character.background;
+    let alignment = props.character.alignment;
 
-
+    let mappedSkills = props.profSkills.map(e=>{
+        return (<h5>{e}</h5>)
+    })
 
     return (
-        <div>
-            {/* <div> */}
-                {/* <h3>Character Name: </h3>
-                <h5>Race: </h5>
-                <h5>Class: </h5>
-                <h5>Background: </h5>
-                <h5>Alignment: </h5>
+        <div className="charpreview">
+            <div>
+                <h3>Character Name: {name}</h3>
+                <h5>Race: {race}</h5>
+                <h5>Class: {role}</h5>
+                <h5>Background: {background}</h5>
+                <h5>Alignment: {alignment}</h5>
             </div>
 
-            <div>
-                <h3>Ability Scores:</h3>
-                <h5>STR: </h5>
-                <h5>DEX: </h5>
-                <h5>CON: </h5>
-                <h5>INT: </h5>
-                <h5>WIS: </h5>
-                <h5>CHA: </h5>
+            <div className="profskills">
+                <h3>Proficient Skills:</h3>
+                {mappedSkills}
             </div>
 
-            <div>
-                <h3>Proficient Skills:</h3> */}
+            <div className="scores">
+                <Stats
+                strength={props.strength}
+                dexterity={props.dexterity}
+                constitution={props.constitution}
+                intelligence={props.intelligence}
+                wisdom={props.wisdom}
+                charisma={props.charisma} />
+            </div>
 
         </div>
     )

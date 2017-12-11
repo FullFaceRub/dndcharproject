@@ -1,0 +1,10 @@
+.profskills {
+    display: flex;
+    flex-direction: column;
+}
+
+.charpreview {
+    display: flex;
+    justify-content: space-between;
+}
+

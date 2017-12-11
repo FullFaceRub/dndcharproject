@@ -52,7 +52,14 @@ class App extends Component {
       sleightOfHand: false,
       stealth: false,
       survival: false,
-      profSkills: []
+      profSkills: [],
+      strength:null,
+      dexterity:null,
+      constitution: null,
+      intelligence: null,
+      wisdom: null,
+      charisma: null,
+      search:''
     }
     this.handleName = this.handleName.bind(this);
     this.handleRace = this.handleRace.bind(this);
@@ -61,6 +68,10 @@ class App extends Component {
     this.handleAlignment = this.handleAlignment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateRoll = this.updateRoll.bind(this);
+    this.handleSkills = this.handleSkills.bind(this);
+    this.createCharacter = this.createCharacter.bind(this);
+    this.searchInput = this.searchInput.bind(this);
+    this.findCharacter = this.findCharacter.bind(this);
   }
 
   //for search bar when searching for races and spells
@@ -208,12 +219,6 @@ class App extends Component {
     })
   }
 
-  // handleTrainSkills(){
-  //   let role = this.state.class;
-  //   let bg = this.state.background;
-  //   let profArr = [];
-  // }
-
   handleSubmit() {
     let newChar = {
       name: this.state.name,
@@ -244,14 +249,20 @@ class App extends Component {
   }
 
   updateRoll(str, dex, con, wis, int, cha) {
+    let strength = str + this.state.strengthBonus;
+    let dexterity = dex + this.state.dexterityBonus;
+    let constitution = con + this.state.constitutionBonus;
+    let intelligence = int + this.state.intelligenceBonus;
+    let wisdom = wis + this.state.wisdomBonus;
+    let charisma = cha + this.state.charismaBonus;
 
     this.setState({
-      baseStrength: str,
-      baseDexterity: dex,
-      baseConstitution: con,
-      baseWisdom: wis,
-      baseIntelligence: int,
-      baseCharisma: cha
+      strength: strength,
+      dexterity: dexterity,
+      constitution: constitution,
+      wisdom: wisdom,
+      intelligence: intelligence,
+      charisma: charisma
     })
   }
 
@@ -262,6 +273,28 @@ class App extends Component {
     })
   }
 
+  createCharacter(){
+    const {character, profSkills, strength, dexterity,constitution,intelligence,wisdom,charisma}= this.state;
+    axios.post('/api/characters',{character,profSkills,strength,dexterity,constitution,intelligence,wisdom,charisma}).then(res =>{
+    
+    })
+  }
+
+  findCharacter(){
+    let val = this.state.search;
+    axios.get('/api/characters/'+val.toUpperCase()).then(res=>{
+      console.log(res);
+      // this.setState({
+      //   name: 
+      // })
+    })
+  } 
+
+  searchInput(e){
+    this.setState({
+      search:e
+    })
+  }
 
 
   render() {
@@ -274,8 +307,8 @@ class App extends Component {
               <h1>Dungeons and Dragons Character Creator</h1>
             </div>
             <div className="search">
-              <input className="searchbox" placeholder="Search" />
-              <button className="searchbutton"><img src={magglass} alt="Search" className="searchicon" /></button>
+              <input className="searchbox" placeholder="Search" onChange={e=>this.searchInput(e.target.value)} />
+              <button className="searchbutton" onClick={this.findCharacter}><img src={magglass} alt="Search" className="searchicon" /></button>
             </div>
           </header>
           <span className="horizontal">
@@ -323,15 +356,16 @@ class App extends Component {
               </div>
               <div className="charPreview">
                 <Character
-                   />
-                {/* <Stats
-                  strength={this.state.strengthBonus}
-                  dexterity={this.state.dexterityBonus}
-                  constitution={this.state.constitutionBonus}
-                  intelligence={this.state.intelligenceBonus}
-                  wisdom={this.state.wisdomBonus}
-                  charisma={this.state.charismaBonus} /> */}
+                  character={this.state.character}
+                  profSkills={this.state.profSkills}
+                  strength={this.state.strength}
+                  dexterity={this.state.dexterity}
+                  constitution={this.state.constitution}
+                  intelligence={this.state.intelligence}
+                  wisdom={this.state.wisdom}
+                  charisma={this.state.charisma} />
               </div>
+              <button onClick={this.createCharacter}>Create Character</button>
             </section>
             <section className="midright"></section>
           </span>

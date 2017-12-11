@@ -11,7 +11,7 @@ export default function Stats (props){
 
     return(
         <div>
-            <h4>Racial Attribute Bonuses</h4>
+            <h4>Ability Scores:</h4>
             <h5>Strength: {strength}</h5>
             <h5>Dexterity: {dexterity}</h5>
             <h5>Constitution: {constitution}</h5>
