@@ -33,7 +33,26 @@ class App extends Component {
       charismaBonus: null,
       classSkills: [],
       backgroundSkills: [],
-      trainableSkills: []
+      trainableSkills: [],
+      acrobatics: false,
+      animalHandling: false,
+      arcana: false,
+      athletics: false,
+      deception: false,
+      history: false,
+      insight: false,
+      intimidation: false,
+      investigation: false,
+      medicine: false,
+      nature: false,
+      perception: false,
+      performance: false,
+      persuasion: false,
+      religion: false,
+      sleightOfHand: false,
+      stealth: false,
+      survival: false,
+      profSkills: []
     }
     this.handleName = this.handleName.bind(this);
     this.handleRace = this.handleRace.bind(this);
@@ -68,26 +87,26 @@ class App extends Component {
         console.log(res);
       })
 
-    // if (val === "Elf") {
-    //   dex = 2;
-    //   int = 1;
-    // }
-    // if (val === "Dwarf") {
-    //   str = 2;
-    //   con = 2;
-    // }
-    // if (val === "Halfling") {
-    //   dex = 2;
-    //   con = 1;
-    // }
-    // if (val === "Human") {
-    //   str = 1;
-    //   dex = 1;
-    //   con = 1;
-    //   int = 1;
-    //   wis = 1;
-    //   cha = 1;
-    // }
+    if (val === "Elf") {
+      dex = 2;
+      int = 1;
+    }
+    if (val === "Dwarf") {
+      str = 2;
+      con = 2;
+    }
+    if (val === "Halfling") {
+      dex = 2;
+      con = 1;
+    }
+    if (val === "Human") {
+      str = 1;
+      dex = 1;
+      con = 1;
+      int = 1;
+      wis = 1;
+      cha = 1;
+    }
     // if (val === "Dragonborn") {
     //   str = 2;
     //   cha = 1;
@@ -207,9 +226,9 @@ class App extends Component {
     let backgroundSkills = this.state.backgroundSkills;
     //filter out duplicates
     for (var i = 0; i < backgroundSkills.length; i++) {
-        if (trainableSkills.indexOf(backgroundSkills[i]) === -1) {
-            trainableSkills.push(backgroundSkills[i])
-        }
+      if (trainableSkills.indexOf(backgroundSkills[i]) === -1) {
+        trainableSkills.push(backgroundSkills[i])
+      }
     }
     // newChar.push(
     //   this.state.name,
@@ -233,6 +252,13 @@ class App extends Component {
       baseWisdom: wis,
       baseIntelligence: int,
       baseCharisma: cha
+    })
+  }
+
+  handleSkills(profSkills){
+    
+    this.setState({
+      profSkills:profSkills
     })
   }
 
@@ -263,40 +289,41 @@ class App extends Component {
             <img src={tiamat} alt="The Evil Goddess Tiamat" className="land-img" />
             <section className="maincontent">
               <div className="buttons">
-               
-                  <SelectionBox
+
+                <SelectionBox
                   name={this.handleName}
                   race={this.handleRace}
                   class={this.handleClass}
                   background={this.handleBackground}
                   alignment={this.handleAlignment}
-                  submit={this.handleSubmit}/>
+                  submit={this.handleSubmit} />
 
-                
+
                 <Roller
 
                   updateRoll={this.updateRoll} />
                 <Skills
-                  strengthBonus={this.state.strengthBonus}
-                  dexterityBonus={this.state.dexterityBonus}
-                  constitutionBonus={this.state.constitutionBonus}
-                  intelligenceBonus={this.state.intelligenceBonus}
-                  wisdomBonus={this.state.wisdomBonus}
-                  charismaBonus={this.state.charismaBonus}
-                  baseStrength={this.state.baseStrength}
-                  baseDexterity={this.state.baseDexterity}
-                  baseConstitution={this.state.baseConstitution}
-                  baseWisdom={this.state.baseWisdom}
-                  baseIntelligence={this.state.baseIntelligence}
-                  baseCharisma={this.state.baseCharisma}
+                  // strengthBonus={this.state.strengthBonus}
+                  // dexterityBonus={this.state.dexterityBonus}
+                  // constitutionBonus={this.state.constitutionBonus}
+                  // intelligenceBonus={this.state.intelligenceBonus}
+                  // wisdomBonus={this.state.wisdomBonus}
+                  // charismaBonus={this.state.charismaBonus}
+                  // baseStrength={this.state.baseStrength}
+                  // baseDexterity={this.state.baseDexterity}
+                  // baseConstitution={this.state.baseConstitution}
+                  // baseWisdom={this.state.baseWisdom}
+                  // baseIntelligence={this.state.baseIntelligence}
+                  // baseCharisma={this.state.baseCharisma}
                   // backgroundSkills={this.state.backgroundSkills}
                   // classSkills={this.state.classSkills}
                   trainableSkills={this.state.trainableSkills}
+                  handleSkills={this.handleSkills}
                 />
               </div>
               <div className="charPreview">
                 <Character
-                  character={this.state.character} />
+                   />
                 {/* <Stats
                   strength={this.state.strengthBonus}
                   dexterity={this.state.dexterityBonus}
